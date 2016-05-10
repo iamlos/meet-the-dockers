@@ -1,22 +1,19 @@
-docker-machine 
+docker-machine ls
 docker-machine create 
 docker-machine create --driver virtualbox -h
 docker-machine create playground --driver=virtualbox
 
+docker-machine ls
+
 # View the ip of the VM
 docker-machine ip playground
 
-# View running images
-docker ps
-
-# View downloaded images
-docker images
-
 # Print environment variables that allow you to connect docker binary to docker daemon
 docker-machine env playground
+
+# Set the environment variables to allow you to connect to docker daemon
 eval "$(docker-machine env playground)"
 docker ps
-docker images
 
 docker-machine stop playground
 docker-machine start playground
