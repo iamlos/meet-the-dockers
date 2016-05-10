@@ -1,23 +1,23 @@
 # meet-the-dockers
 
-
-
-
 #1. docker-machine
     docker-machine ls
     docker-machine create 
     docker-machine create --driver virtualbox -h
     docker-machine create playground --driver=virtualbox
-    
     docker-machine ls
+    docker-machine ssh
+    //Now docker is connecting to the socket, not tcp. Check for DOCKER_HOST, it's not set because it doesn't need to be
     
-    View the ip of the VM
+    exit
+    
+    //View the ip of the VM
     docker-machine ip playground
     
-    Print environment variables that allow you to connect docker binary to docker daemon
+    //Print environment variables that allow you to connect docker binary to docker daemon
     docker-machine env playground
     
-    Set the environment variables to allow you to connect to docker daemon
+    //Set the environment variables to allow you to connect to docker daemon
     eval "$(docker-machine env playground)"
     docker ps
     
@@ -27,12 +27,14 @@
     docker-machine rm playground
     docker-machine ls
     
-    when stopping and starting the vm, you may be asked to run
+    //when stopping and starting the vm, you may be asked to run
     docker-machine regenerate-certs
     
-    Shows help
+    //Shows help
     docker-machine
 #2. docker
+    //Run or open the quickstart terminal if you haven't already done so
+    eval "$(docker-machine env playground)"
     docker run -d -p 8000:80 nginx
     docker logs
     docker rm
@@ -53,28 +55,35 @@
     docker push
     docker create
     docker start
-#3. docker hub
-    whalesay
+#3. docker-compose and wordpress
+    https://hub.docker.com/_/wordpress/
+    
+    docker pull wordpress (optional)
+    docker-compose up
+    http://localhost:8000
+    //Doesn't work!?
+    
+    //get ip of host
+    docker env default
+    
+    //ip will be something like 192.168.99.100
+    http://host-ip:8080docker hub
+        
+#4. whalesay/docker hub
     docker run docker/whalesay cowsay any text you want here
     run this a few times with different messages (for FUN!()
     docker ps
     docker ps -a
     docker rm name-of-container
     docker rm $(docker ps -aq)
-#4. bash
-    build something awesome
-    docker commit
-#5. dockerfile
+#5. bash
+    docker run -it --name busybox busybox
+    mkdir anyDirName
+    exit
+    docker ps -a
+    docker commit 
+#6. dockerfile
     make a simple Dockerfile
-#6. docker-compose and wordpress
-    https://hub.docker.com/_/wordpress/
-    
-    docker pull wordpress (optional)
-    docker-compose up
-    
-    docker env default (get ip)
-    
-    http://host-ip:8080
 #7. gcm
     https://github.com/googlesamples/gcm-playground.git
 #8. cc-reader-ordering-service
@@ -86,7 +95,6 @@
     https://github.com/ryanwalker/svn-to-git-dockerized
 #11. cas
     delmar started this
-    Can we get it dockerized today?
     Everybody try it
     Setup CAS Locally steps:
     1. git clone https://github.com/infusionsoft/infusionsoft-cas.git
@@ -116,7 +124,6 @@
     17. Run flagship: mvn tomcat6:run -pl webapp -P cas
     18. check roles and make sure have cas publishing role: https://infusionsoft.infusiontest.com:8443/app/authentication/whoAmI.jsp
     19. Make sure the JDK has the valid certificates. If not, install the certs.
-    
 #12. dirty data set
     Create a dataset with data that we know has caused problems for our software.
     Anyone can easily spin this up and test against it.
