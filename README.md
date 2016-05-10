@@ -33,19 +33,48 @@
     Shows help
     docker-machine
 #2. docker
-    nginx
+    docker run -d -p 8000:80 nginx
+    docker logs
+    docker rm
+    docker rmi
+    docker run
+    docker top
+    
+    docker inspect container_name
+    
+    docker ps
+    docker info
+    
+    # View downloaded images
+    docker images
+    
+    docker pull busybox
+    
+    docker push
+    docker create
+    docker start
 #3. docker hub
     whalesay
-
+    docker run docker/whalesay cowsay any text you want here
+    run this a few times with different messages (for FUN!()
+    docker ps
+    docker ps -a
+    docker rm name-of-container
+    docker rm $(docker ps -aq)
 #4. bash
     build something awesome
     docker commit
 #5. dockerfile
     make a simple Dockerfile
-#6. wordpress
-    docker-compose
+#6. docker-compose and wordpress
     https://hub.docker.com/_/wordpress/
-    docker pull wordpress
+    
+    docker pull wordpress (optional)
+    docker-compose up
+    
+    docker env default (get ip)
+    
+    http://host-ip:8080
 #7. gcm
     https://github.com/googlesamples/gcm-playground.git
 #8. cc-reader-ordering-service
@@ -53,6 +82,7 @@
 #9. flagship-mysql
     meet-the-dockers branch
 #10. ephemeral
+    docker run -rm
     https://github.com/ryanwalker/svn-to-git-dockerized
 #11. cas
     delmar started this
@@ -87,3 +117,7 @@
     18. check roles and make sure have cas publishing role: https://infusionsoft.infusiontest.com:8443/app/authentication/whoAmI.jsp
     19. Make sure the JDK has the valid certificates. If not, install the certs.
     
+#12. dirty data set
+    Create a dataset with data that we know has caused problems for our software.
+    Anyone can easily spin this up and test against it.
+    Caveat - Most database images set the data path as a data volume, which is not persisten. This can be changed though.
